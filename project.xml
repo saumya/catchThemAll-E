@@ -24,6 +24,14 @@
 	<ios binaries="armv7" />
 	<ios deployment="3.2" binaries="fat" devices="iphone" /> <!---- "ipad","iphone","universal" -->
 	<ios linker-flags="" prerendered-icon="false" />
+	<!--
+	<launchImage path="Default.png" width="320" height="480" />
+	<launchImage path="Default@2x.png" width="640" height="960" />
+	<launchImage path="Default-Portrait~ipad.png" width="768" height="1024" />
+	<launchImage path="Default-Portrait@2x~ipad.png" width="1536" height="2048" />
+	<launchImage path="Default-Landscape~ipad.png" width="1024" height="768" />
+	<launchImage path="Default-Landscape@2x~ipad.png" width="2048" height="1536" />
+	-->
 	
 	<!--	
 	<android target-sdk-version="12" minimum-sdk-version="7" />
@@ -40,6 +48,7 @@
 	<assets path="Assets/images" rename="images" include="*" exclude="rayIcon.svg" />
 	
 	<icon path="Assets/images/rayIcon.svg" />
+	<launchImage path="Assets/images/logo.png" />
 	
 	<section if="release-sign">
 		<certificate path="path/to/android.keystore" if="android" />
