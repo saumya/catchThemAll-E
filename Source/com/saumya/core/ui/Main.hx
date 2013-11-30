@@ -40,10 +40,10 @@ class Main extends Sprite
 	{
 		//trace('construct');
 		this.addChild(this.application);
-		//
 		this.application.resize(stage.stageWidth, stage.stageHeight);
 		//this.resize (stage.stageWidth, stage.stageHeight);
-		this.stage.addEventListener (Event.RESIZE, stage_onResize);
+		//this.stage.addEventListener (Event.RESIZE, stage_onResize);
+		
 	}
 	
 	private function stage_onResize(e:Event):Void 

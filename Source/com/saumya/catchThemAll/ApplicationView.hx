@@ -41,6 +41,10 @@ class ApplicationView extends Sprite
 
 	private var numRows:Int;
 	private var allRows:Array<ColorRow>;
+	
+	private var rowHolder:Sprite;
+	private var scaleFactor:Float;
+
 	private  var cRowResponder:ColorRowResponder;
 
 	//private var colorCounts:Array<ColorCountVO>;
@@ -70,13 +74,16 @@ class ApplicationView extends Sprite
 		this.bg = new BackgroundView();
 		this.bg.setSize(this.widthX, this.heightX);
 		this.homeScreen = new HomeView();
-		this.homeScreen.move((stageWidth-this.homeScreen.width)/2,0);
+		this.homeScreen.move((stageWidth-this.homeScreen.width)/2,(stageHeight-this.homeScreen.height)/2);
 		
 		//calculating numRows depending upon the height
-		var numR:Int = Math.floor(stageHeight / 80);
-		this.numRows = numR;//previously used settings : default=8, sony experia E=6
+		//var numR:Int = Math.floor(stageHeight / 80);//doing before, now will depend upon level
+		//this.numRows = numR;//previously used settings : default=8, sony experia E=6
+		this.numRows = 6;
 		
 		this.allRows=new Array();
+		this.rowHolder = new Sprite();
+		this.addChild(this.rowHolder);
 		//this.colorCounts=new Array();
 		this.ccModel = new ColorCountModel();
 		this.scoreModel = new ScoreModel();
@@ -131,21 +138,30 @@ class ApplicationView extends Sprite
 		trace('render : width=' + this.width + ' :: height=' + this.height);
 		trace('render : widthX=' + this.widthX + ' :: heightX=' + this.heightX);
 		*/
-		
+		this.addChild(this.rowHolder);
 		//check, whether its first time
 		if (this.scoreModel.getTotalCount() <= 0) {
+			//var lastY:Float = 0;
 			//create the rows
 			for (i in 0...this.numRows) {
 				var cRow:ColorRow = new ColorRow();
+				
+				trace('crow : width='+cRow.width+' :: stageWidth='+this.widthX);
+				trace('crow : height='+cRow.height+' :: stageHeight='+this.heightX);
+				this.scaleFactor = (this.widthX/cRow.width);
+				trace('crow : scaleFactor=(this.widthX/cRow.width)='+this.scaleFactor);
+
+
 				cRow.y = i*(60+5);
 				//just putting something to render
 				cRow.x=1000;
 				//cRow.alpha =0;
 				//Actuate.tween (cRow, 0.8*(Math.random()), { alpha: 1, x:0 } ).ease (Quad.easeOut);
-				this.addChild(cRow);
+				this.rowHolder.addChild(cRow);
 				this.allRows.push(cRow);
 				this.animateIn(cRow);
 			}
+			this.rowHolder.scaleX=this.rowHolder.scaleY=this.scaleFactor;
 			//conditional compilation
 			//for the timebeing, lets not do that
 			//#if(desktop||web)
@@ -155,8 +171,10 @@ class ApplicationView extends Sprite
 			this.addChild(cRowResponse);
 			*/
 			this.cRowResponder = new ColorRowResponder();
-			this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
-			this.cRowResponder.y=this.height-(60+5);
+			//this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
+			//this.cRowResponder.y=this.height-(60+5);
+			this.cRowResponder.y = (this.heightX-this.cRowResponder.height)-(70);
+			this.cRowResponder.scaleX=this.cRowResponder.scaleY=this.scaleFactor;
 			this.addChild(this.cRowResponder);
 			this.cRowResponder.visible = false;
 			//#end
@@ -303,7 +321,8 @@ class ApplicationView extends Sprite
 	
 	private function animateIn(cRow:ColorRow):Void
 	{
-		var xVal:Float = (this.widthX - cRow.width) / 2;
+		//var xVal:Float = (this.widthX - cRow.width) / 2;
+		var xVal:Float = 0;
 		Actuate.tween (cRow, 0.8*(1 + Math.random()), { x:xVal } ).ease (Quad.easeOut).onComplete(animInComplete,[cRow]);
 	}
 	private function animateOut(cRow:ColorRow):Void
