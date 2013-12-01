@@ -10,6 +10,7 @@ import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.text.TextFieldAutoSize;
 import flash.utils.Timer;
+
 import openfl.Assets;
 
 /**
@@ -35,8 +36,9 @@ class ScoreCardView extends Sprite
 	private var life:TextField;
 	private var lifeRemaining:Int;
 	private var lifeMax:Int;
-	private var lifeLineGfx:Bitmap;
-	private var lifeText:TextField;
+	//private var lifeLineGfx:Bitmap;
+	//private var lifeText:TextField;
+	private var lifeView:LifeView;
 	
 	private var formatGeneral:TextFormat;
 	private var formatLeftAlign:TextFormat;
@@ -59,22 +61,11 @@ class ScoreCardView extends Sprite
 		
 		this.life = new TextField();
 		//this.lifeRemaining = 100;//initialized depengin upon stageHeight.
-		/*
-		#if desktop
-		this.lifeRemaining =10;
-		#else
-		this.lifeRemaining =100;
-		#end
-		*/
 		//this.lifeRemaining = 0;
 		//this.lifeMax = this.lifeRemaining;//initialized depengin upon stageHeight.
-		this.lifeLineGfx = new Bitmap(Assets.getBitmapData ("images/life_line_gfx.png"));
-		this.lifeLineGfx.smoothing=true;
-		this.addChild(this.lifeLineGfx);
-		this.lifeText=new TextField();
-		this.lifeText.autoSize=TextFieldAutoSize.RIGHT;
-		this.addChild(this.lifeText);
 		
+		this.lifeView=new LifeView();
+
 		this.circleBg = new Sprite();
 		var circleMap:Bitmap = new Bitmap (Assets.getBitmapData ("images/circle_1.png"));
 		this.circleBg.addChild(circleMap);
@@ -109,7 +100,7 @@ class ScoreCardView extends Sprite
 		//
 		this.total.defaultTextFormat = this.correct.defaultTextFormat = this.wrong.defaultTextFormat = this.formatLeftAlign;
 		this.life.defaultTextFormat = this.formatCenterAlign;
-		this.lifeText.defaultTextFormat = this.formatRightAlign;
+		//this.lifeText.defaultTextFormat = this.formatRightAlign;
 		
 		this.total.x = this.total.y = 0;
 		this.correct.y = 30;
@@ -150,9 +141,9 @@ class ScoreCardView extends Sprite
 		if(this.stage.stageHeight<=500){
 			this.lifeMax=50;
 		}else if(this.stage.stageHeight<=1000){
-			this.lifeMax=100;
-		}else{
 			this.lifeMax=200;
+		}else{
+			this.lifeMax=500;
 		}
 		this.lifeRemaining=this.lifeMax;
 		this.life.text = '' + this.lifeRemaining;
@@ -172,7 +163,8 @@ class ScoreCardView extends Sprite
 	private function onTimer(e:TimerEvent):Void 
 	{
 		this.lifeRemaining --;
-		this.lifeLineGfx.scaleX = (this.lifeRemaining/this.lifeMax);
+		//this.lifeLineGfx.scaleX = (this.lifeRemaining/this.lifeMax);
+		this.lifeView.updateLife(this.lifeRemaining/this.lifeMax);
 		//this.lifeLineGfx.width --;
 		//this.life.text = 'LIFE:' + this.lifeRemaining;
 		this.life.text = '' + this.lifeRemaining;
@@ -190,7 +182,11 @@ class ScoreCardView extends Sprite
 		//this.addChild(this.wrong);
 		//this.addChild(this.life);
 		this.addChild(this.circleBg);
-		this.addChild(this.lifeText);
+		//this.addChild(this.lifeText);
+
+		
+		//this.lifeView.y=100;
+		this.addChild(this.lifeView);
 	}
 	
 	public function showBackground(bgWidth:Float,bgHeight:Float):Void
@@ -212,11 +208,17 @@ class ScoreCardView extends Sprite
 		this.circleBg.x = bgWidth - 90;
 		this.circleBg.y = 10;
 		//
-		this.lifeLineGfx.x = bgWidth - (this.lifeLineGfx.width);
+		/*
+		this.lifeLineGfx.x = bgWidth - (this.lifeLineGfx.width+10);
 		this.lifeLineGfx.y = 100;
+		*/
+		/*
 		this.lifeText.text = 'LIFE';
 		this.lifeText.x=bgWidth-(2.7*this.lifeText.width);
 		this.lifeText.y=60;
+		*/
+		this.lifeView.x=bgWidth-(this.lifeView.width+5);
+		this.lifeView.y=100;
 	}
 	
 	public function setScore(totalNum:Int,correctNum:Int):Void
