@@ -289,7 +289,7 @@ class ApplicationView extends Sprite
 	{
 		//make a negetive score
 		this.scoreModel.incrementInCorrectCount();
-		this.displayModalResponse(false);
+		this.displayModalResponse(false,true);
 		this.scoreView.setScore(this.scoreModel.getTotalCount(), this.scoreModel.getCorrectCount());
 		this.cRowResponder.visible = false;
 	}
@@ -298,10 +298,15 @@ class ApplicationView extends Sprite
 	 * Displays the modal dialogue, disabling everything behind
 	 * @param	isCorrect
 	 */
-	private function displayModalResponse(isCorrect:Bool):Void
+	private function displayModalResponse(isCorrect:Bool,?isTimeUp:Bool=false):Void
 	{
 		//trace('displayModalResponse');
-		this.userResponseDisplay.showResponse(isCorrect);
+		if(isTimeUp==true){
+			this.userResponseDisplay.showTimeUp();
+		}else{
+			this.userResponseDisplay.showResponse(isCorrect);
+		}
+		
 		/*
 		this.modalLayer.reInitialize(this.width,this.height);
 		this.modalLayer.visible = true;

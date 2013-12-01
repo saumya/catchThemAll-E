@@ -19,6 +19,7 @@ class ResponseDisplay extends Sprite
 {
 	private var correct:Bitmap;
 	private var inCorrect:Bitmap;
+	private var timeUp:Bitmap;
 
 	public function new() 
 	{
@@ -33,10 +34,15 @@ class ResponseDisplay extends Sprite
 		//this.correct.alpha = 0.4;
 		this.inCorrect = new Bitmap (Assets.getBitmapData ("images/incorrect.png"));
 		this.inCorrect.smoothing = true;
+		//
+		this.timeUp = new Bitmap (Assets.getBitmapData ("images/timeUp.png"));
+		this.timeUp.smoothing = true;
+
 		
 		//this.correct.width = this.correct.height = this.inCorrect.width = this.inCorrect.height = 200;
 		this.correct.visible = false;
 		this.inCorrect.visible = false;
+		this.timeUp.visible=false;
 		//
 		this.addEventListener(MouseEvent.CLICK, onUserClick);
 		this.construct();
@@ -46,8 +52,10 @@ class ResponseDisplay extends Sprite
 	{
 		this.addChild(this.correct);
 		this.addChild(this.inCorrect);
+		this.addChild(this.timeUp);
 		this.correct.x=this.correct.y=-(this.correct.width/2);
 		this.inCorrect.x=this.inCorrect.y=-(this.inCorrect.width/2);
+		this.timeUp.x=this.timeUp.y=-(this.timeUp.width/2);
 		this.render();
 	}
 	
@@ -55,6 +63,7 @@ class ResponseDisplay extends Sprite
 	{
 		this.correct.visible = false;
 		this.inCorrect.visible = false;
+		this.timeUp.visible = false;
 	}
 
 	private function onUserClick(e:MouseEvent):Void 
@@ -81,6 +90,7 @@ class ResponseDisplay extends Sprite
 		if (isCorrect) {
 			this.correct.visible = true;
 			this.inCorrect.visible = false;
+			this.timeUp.visible=false;
 			/*
 			//this.correct.scaleX=this.correct.scaleY=0.1;
 			//Actuate.tween (this.correct, 0.2, { scaleX:1, scaleY:1 } ).ease (Quad.easeOut);
@@ -91,6 +101,7 @@ class ResponseDisplay extends Sprite
 		}else {
 			this.correct.visible = false;
 			this.inCorrect.visible = true;
+			this.timeUp.visible=false;
 			/*
 			//this.inCorrect.scaleX=this.inCorrect.scaleY=0.1;
 			//Actuate.tween (this.inCorrect, 0.2, { scaleX:1, scaleY:1 } ).ease (Quad.easeOut);
@@ -99,6 +110,12 @@ class ResponseDisplay extends Sprite
 			Actuate.tween (this.inCorrect, 0.2, { x:0 } ).ease (Quad.easeOut);
 			*/
 		}
+	}
+	public function showTimeUp():Void
+	{
+		this.timeUp.visible=true;
+		this.correct.visible=false;
+		this.inCorrect.visible=false;
 	}
 	
 	public function hideResponse():Void
