@@ -77,9 +77,9 @@ class ApplicationView extends Sprite
 		this.homeScreen.move((stageWidth-this.homeScreen.width)/2,(stageHeight-this.homeScreen.height)/2);
 		
 		//calculating numRows depending upon the height
-		//var numR:Int = Math.floor(stageHeight / 80);//doing before, now will depend upon level
-		//this.numRows = numR;//previously used settings : default=8, sony experia E=6
-		this.numRows = 6;
+		var numR:Int = Math.floor(stageHeight / 80);//doing before, now will depend upon level
+		this.numRows = numR;//previously used settings : default=8, sony experia E=6
+		//this.numRows = 5;
 		
 		this.allRows=new Array();
 		this.rowHolder = new Sprite();
@@ -161,7 +161,8 @@ class ApplicationView extends Sprite
 				this.allRows.push(cRow);
 				this.animateIn(cRow);
 			}
-			this.rowHolder.scaleX=this.rowHolder.scaleY=this.scaleFactor;
+			//this.rowHolder.scaleX=this.rowHolder.scaleY=this.scaleFactor;
+
 			//conditional compilation
 			//for the timebeing, lets not do that
 			//#if(desktop||web)
@@ -171,10 +172,10 @@ class ApplicationView extends Sprite
 			this.addChild(cRowResponse);
 			*/
 			this.cRowResponder = new ColorRowResponder();
-			//this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
-			//this.cRowResponder.y=this.height-(60+5);
-			this.cRowResponder.y = (this.heightX-this.cRowResponder.height)-(70);
-			this.cRowResponder.scaleX=this.cRowResponder.scaleY=this.scaleFactor;
+			this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
+			this.cRowResponder.y=this.height-(60+5);
+			//this.cRowResponder.y = (this.heightX-this.cRowResponder.height)-(70);
+			//this.cRowResponder.scaleX=this.cRowResponder.scaleY=this.scaleFactor;
 			this.addChild(this.cRowResponder);
 			this.cRowResponder.visible = false;
 			//#end
@@ -321,8 +322,8 @@ class ApplicationView extends Sprite
 	
 	private function animateIn(cRow:ColorRow):Void
 	{
-		//var xVal:Float = (this.widthX - cRow.width) / 2;
-		var xVal:Float = 0;
+		var xVal:Float = (this.widthX - cRow.width) / 2;
+		//var xVal:Float = 0;
 		Actuate.tween (cRow, 0.8*(1 + Math.random()), { x:xVal } ).ease (Quad.easeOut).onComplete(animInComplete,[cRow]);
 	}
 	private function animateOut(cRow:ColorRow):Void
@@ -354,6 +355,18 @@ class ApplicationView extends Sprite
 			this.ccModel = new ColorCountModel();
 			this.animateOutCount = 0;
 			//Now render again
+			//this.render();
+			//this.homeScreen.visible=true;
+			//check attempts, if its 10, disply the home screen again.
+			this.checkAttempts();
+		}
+	}
+
+	private function checkAttempts():Void
+	{
+		if((this.scoreModel.getTotalCount()%10)==0){
+			this.homeScreen.visible=true;
+		}else{
 			this.render();
 		}
 	}
