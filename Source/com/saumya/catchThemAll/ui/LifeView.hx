@@ -14,6 +14,7 @@ class LifeView extends Sprite
 	private var bg:Bitmap;
 	private var life:Bitmap;
 	private var lifeText:TextField;
+	private var lifeCounter:TextField;
 
 	public function new()
 	{
@@ -27,20 +28,27 @@ class LifeView extends Sprite
 		this.life.x=this.life.y=5;
 		this.lifeText=new TextField();
 		this.lifeText.selectable=false;
-		this.lifeText.autoSize=TextFieldAutoSize.LEFT;
+		this.lifeText.autoSize=TextFieldAutoSize.CENTER;
+		this.lifeCounter=new TextField();
+		this.lifeCounter.selectable=false;
+		this.lifeCounter.autoSize=TextFieldAutoSize.CENTER;
 		
 		//
 		var font = Assets.getFont ("fonts/ArchitectsDaughter.ttf");
 		var formatGeneral = new TextFormat();
 		formatGeneral.font = font.fontName;
 		formatGeneral.align = TextFormatAlign.LEFT;
-		formatGeneral.size = 20;
+		formatGeneral.size = 40;
 		formatGeneral.color = 0xFFFFFF;
 		//
 		this.lifeText.defaultTextFormat = formatGeneral;
-		this.lifeText.x=25;
+		this.lifeText.x=0;
 		this.lifeText.y=12;
 		this.lifeText.text='LIFE';
+		this.lifeCounter.defaultTextFormat=formatGeneral;
+		this.lifeCounter.x=0;
+		this.lifeCounter.y=50;
+		this.lifeCounter.text=''+1000;
 		//
 		this.construct();
 	}
@@ -49,6 +57,7 @@ class LifeView extends Sprite
 		this.addChild(this.bg);
 		this.addChild(this.life);
 		this.addChild(this.lifeText);
+		this.addChild(this.lifeCounter);
 		//lastly
 		//this.render();
 	}
@@ -58,8 +67,9 @@ class LifeView extends Sprite
 
 	}
 
-	public function updateLife(value:Float):Void
+	public function updateLife(value:Float,remaining:Int):Void
 	{
 		this.life.scaleX=value;
+		this.lifeCounter.text=''+remaining;
 	}
 }

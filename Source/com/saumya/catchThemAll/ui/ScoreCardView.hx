@@ -31,9 +31,9 @@ class ScoreCardView extends Sprite
 	private var total:TextField;
 	private var correct:TextField;
 	private var wrong:TextField;
-	private var circleBg:Sprite;
+	//private var circleBg:Sprite;
 	
-	private var life:TextField;
+	//private var life:TextField;
 	private var lifeRemaining:Int;
 	private var lifeMax:Int;
 	//private var lifeLineGfx:Bitmap;
@@ -59,17 +59,18 @@ class ScoreCardView extends Sprite
 		this.correct = new TextField();
 		this.wrong = new TextField();
 		
-		this.life = new TextField();
+		//this.life = new TextField();
+		//this.life.autoSize=TextFieldAutoSize.CENTER;
 		//this.lifeRemaining = 100;//initialized depengin upon stageHeight.
 		//this.lifeRemaining = 0;
 		//this.lifeMax = this.lifeRemaining;//initialized depengin upon stageHeight.
 		
 		this.lifeView=new LifeView();
 
-		this.circleBg = new Sprite();
-		var circleMap:Bitmap = new Bitmap (Assets.getBitmapData ("images/circle_1.png"));
-		this.circleBg.addChild(circleMap);
-		this.circleBg.addChild(this.life);
+		//this.circleBg = new Sprite();
+		//var circleMap:Bitmap = new Bitmap (Assets.getBitmapData ("images/circle_1.png"));
+		//this.circleBg.addChild(circleMap);
+		//this.circleBg.addChild(this.life);
 		//
 		//var font = Assets.getFont ("fonts/BoB.ttf");
 		var font = Assets.getFont ("fonts/ArchitectsDaughter.ttf");
@@ -99,7 +100,7 @@ class ScoreCardView extends Sprite
 		this.formatRightAlign.color = 0xFFFFFF;
 		//
 		this.total.defaultTextFormat = this.correct.defaultTextFormat = this.wrong.defaultTextFormat = this.formatLeftAlign;
-		this.life.defaultTextFormat = this.formatCenterAlign;
+		//this.life.defaultTextFormat = this.formatCenterAlign;
 		//this.lifeText.defaultTextFormat = this.formatRightAlign;
 		
 		this.total.x = this.total.y = 0;
@@ -118,14 +119,14 @@ class ScoreCardView extends Sprite
 		this.correct.text = "CORRECT:0";
 		this.wrong.text = "Wrong:0";
 		
-		this.life.width = 54;
-		this.life.height = 40;
+		//this.life.width = 54;
+		//this.life.height = 40;
 		//this.life.text = 'LIFE:' + this.lifeRemaining;
 		//this.life.text = '' + this.lifeRemaining;
-		this.life.x = 10;
-		this.life.y = 10;
+		//this.life.x = 10;
+		//this.life.y = 10;
 		
-		this.total.selectable = this.correct.selectable = this.wrong.selectable = this.life.selectable = false;
+		this.total.selectable = this.correct.selectable = this.wrong.selectable = false;
 		//
 		/*
 		this.timerLife = new Timer(0);
@@ -141,12 +142,12 @@ class ScoreCardView extends Sprite
 		if(this.stage.stageHeight<=500){
 			this.lifeMax=50;
 		}else if(this.stage.stageHeight<=1000){
-			this.lifeMax=200;
+			this.lifeMax=50;
 		}else{
 			this.lifeMax=500;
 		}
 		this.lifeRemaining=this.lifeMax;
-		this.life.text = '' + this.lifeRemaining;
+		//this.life.text = '' + this.lifeRemaining;
 		//
 		this.timerLife = new Timer(this.lifeMax);
 		this.timerLife.addEventListener(TimerEvent.TIMER,onTimer);
@@ -164,10 +165,10 @@ class ScoreCardView extends Sprite
 	{
 		this.lifeRemaining --;
 		//this.lifeLineGfx.scaleX = (this.lifeRemaining/this.lifeMax);
-		this.lifeView.updateLife(this.lifeRemaining/this.lifeMax);
+		this.lifeView.updateLife(this.lifeRemaining/this.lifeMax,this.lifeRemaining);
 		//this.lifeLineGfx.width --;
 		//this.life.text = 'LIFE:' + this.lifeRemaining;
-		this.life.text = '' + this.lifeRemaining;
+		//this.life.text = '' + this.lifeRemaining;
 		if (this.lifeRemaining<=0) {
 			this.stopLife();
 			var le:LifeEvent = new LifeEvent(LifeEvent.END, true);
@@ -181,8 +182,8 @@ class ScoreCardView extends Sprite
 		//this.addChild(this.correct);
 		//this.addChild(this.wrong);
 		//this.addChild(this.life);
-		this.addChild(this.circleBg);
-		//this.addChild(this.lifeText);
+		//this.addChild(this.circleBg);
+		//this.addChild(Text);
 
 		
 		//this.lifeView.y=100;
@@ -205,8 +206,10 @@ class ScoreCardView extends Sprite
 		*/
 		//this.life.x = 10;
 		//this.life.y = 50;
-		this.circleBg.x = bgWidth - 90;
-		this.circleBg.y = 10;
+		/*
+		this.circleBg.x = bgWidth - 100;
+		this.circleBg.y = 60;
+		*/
 		//
 		/*
 		this.lifeLineGfx.x = bgWidth - (this.lifeLineGfx.width+10);
@@ -218,7 +221,7 @@ class ScoreCardView extends Sprite
 		this.lifeText.y=60;
 		*/
 		this.lifeView.x=bgWidth-(this.lifeView.width+5);
-		this.lifeView.y=100;
+		this.lifeView.y=10;
 	}
 	
 	public function setScore(totalNum:Int,correctNum:Int):Void
