@@ -33,11 +33,12 @@ class LifeView extends Sprite
 		var font = Assets.getFont ("fonts/ArchitectsDaughter.ttf");
 		var formatGeneral = new TextFormat();
 		formatGeneral.font = font.fontName;
-		formatGeneral.align = TextFormatAlign.RIGHT;
+		formatGeneral.align = TextFormatAlign.LEFT;
 		formatGeneral.size = 20;
 		formatGeneral.color = 0xFFFFFF;
 		//
 		this.lifeText.defaultTextFormat = formatGeneral;
+		this.lifeText.x=25;
 		this.lifeText.y=12;
 		this.lifeText.text='LIFE';
 		//
