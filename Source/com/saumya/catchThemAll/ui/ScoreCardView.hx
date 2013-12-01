@@ -102,11 +102,11 @@ class ScoreCardView extends Sprite
 	private function onAddedToStage(e:Event):Void
 	{
 		if(this.stage.stageHeight<=500){
-			this.lifeMax=50;
-		}else if(this.stage.stageHeight<=1000){
 			this.lifeMax=100;
+		}else if((this.stage.stageHeight>500)&&this.stage.stageHeight<=1000){
+			this.lifeMax=200;
 		}else{
-			this.lifeMax=500;
+			this.lifeMax=300;
 		}
 		this.lifeRemaining=this.lifeMax;
 		//
