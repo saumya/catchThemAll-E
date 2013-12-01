@@ -3,6 +3,7 @@ import com.saumya.catchThemAll.events.LifeEvent;
 import flash.display.Bitmap;
 import flash.display.Graphics;
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.events.TimerEvent;
 import flash.text.TextField;
 import flash.text.TextFormat;
@@ -54,8 +55,16 @@ class ScoreCardView extends Sprite
 		this.wrong = new TextField();
 		
 		this.life = new TextField();
-		this.lifeRemaining = 100;
-		this.lifeMax = this.lifeRemaining;
+		//this.lifeRemaining = 100;//initialized depengin upon stageHeight.
+		/*
+		#if desktop
+		this.lifeRemaining =10;
+		#else
+		this.lifeRemaining =100;
+		#end
+		*/
+		//this.lifeRemaining = 0;
+		//this.lifeMax = this.lifeRemaining;//initialized depengin upon stageHeight.
 		
 		this.circleBg = new Sprite();
 		var circleMap:Bitmap = new Bitmap (Assets.getBitmapData ("images/circle_1.png"));
@@ -111,7 +120,7 @@ class ScoreCardView extends Sprite
 		this.life.width = 54;
 		this.life.height = 40;
 		//this.life.text = 'LIFE:' + this.lifeRemaining;
-		this.life.text = '' + this.lifeRemaining;
+		//this.life.text = '' + this.lifeRemaining;
 		this.life.x = 10;
 		this.life.y = 10;
 		
@@ -120,6 +129,21 @@ class ScoreCardView extends Sprite
 		this.timerLife = new Timer(100);
 		this.timerLife.addEventListener(TimerEvent.TIMER,onTimer);
 		this.timerLife.addEventListener(TimerEvent.TIMER_COMPLETE,onTimerComplete);
+		//
+		//this.construct();
+		this.addEventListener(Event.ADDED_TO_STAGE,onAddedToStage);
+	}
+	private function onAddedToStage(e:Event):Void
+	{
+		if(this.stage.stageHeight<=500){
+			this.lifeMax=50;
+		}else if(this.stage.stageHeight<=1000){
+			this.lifeMax=100;
+		}else{
+			this.lifeMax=200;
+		}
+		this.lifeRemaining=this.lifeMax;
+		this.life.text = '' + this.lifeRemaining;
 		//
 		this.construct();
 	}
@@ -145,9 +169,7 @@ class ScoreCardView extends Sprite
 	{
 		this.addChild(this.total);
 		//this.addChild(this.correct);
-		
 		//this.addChild(this.wrong);
-		
 		//this.addChild(this.life);
 		this.addChild(this.circleBg);
 	}
