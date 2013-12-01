@@ -145,11 +145,12 @@ class ApplicationView extends Sprite
 			//create the rows
 			for (i in 0...this.numRows) {
 				var cRow:ColorRow = new ColorRow();
-				
+				/*
 				trace('crow : width='+cRow.width+' :: stageWidth='+this.widthX);
 				trace('crow : height='+cRow.height+' :: stageHeight='+this.heightX);
+				*/
 				this.scaleFactor = (this.widthX/cRow.width);
-				trace('crow : scaleFactor=(this.widthX/cRow.width)='+this.scaleFactor);
+				//trace('crow : scaleFactor=(this.widthX/cRow.width)='+this.scaleFactor);
 
 
 				cRow.y = i*(60+5);
