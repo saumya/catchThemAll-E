@@ -6,6 +6,7 @@ import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
+import flash.events.MouseEvent;
 
 import openfl.Assets;
 
@@ -48,7 +49,10 @@ class LifeView extends Sprite
 		this.lifeCounter.defaultTextFormat=formatGeneral;
 		this.lifeCounter.x=0;
 		this.lifeCounter.y=50;
-		this.lifeCounter.text=''+1000;
+		this.lifeCounter.text=''+0;
+		this.lifeCounter.visible=false;
+		//
+		this.addEventListener(MouseEvent.CLICK,onUserClick);
 		//
 		this.construct();
 	}
@@ -60,6 +64,10 @@ class LifeView extends Sprite
 		this.addChild(this.lifeCounter);
 		//lastly
 		//this.render();
+	}
+	private function onUserClick(e:MouseEvent):Void
+	{
+		this.lifeCounter.visible = !(this.lifeCounter.visible);
 	}
 
 	public function render():Void

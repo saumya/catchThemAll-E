@@ -142,7 +142,7 @@ class ScoreCardView extends Sprite
 		if(this.stage.stageHeight<=500){
 			this.lifeMax=50;
 		}else if(this.stage.stageHeight<=1000){
-			this.lifeMax=50;
+			this.lifeMax=100;
 		}else{
 			this.lifeMax=500;
 		}
