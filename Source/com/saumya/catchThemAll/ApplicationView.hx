@@ -151,8 +151,6 @@ class ApplicationView extends Sprite
 				*/
 				this.scaleFactor = (this.widthX/cRow.width);
 				//trace('crow : scaleFactor=(this.widthX/cRow.width)='+this.scaleFactor);
-
-
 				cRow.y = i*(60+5);
 				//just putting something to render
 				cRow.x=1000;
@@ -162,21 +160,10 @@ class ApplicationView extends Sprite
 				this.allRows.push(cRow);
 				this.animateIn(cRow);
 			}
-			//this.rowHolder.scaleX=this.rowHolder.scaleY=this.scaleFactor;
 
-			//conditional compilation
-			//for the timebeing, lets not do that
-			//#if(desktop||web)
-			/*
-			var cRowResponse:ColorRowResponder = new ColorRowResponder();
-			cRowResponse.y=this.height+20;
-			this.addChild(cRowResponse);
-			*/
 			this.cRowResponder = new ColorRowResponder();
 			this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
 			this.cRowResponder.y=this.height-(60+5);
-			//this.cRowResponder.y = (this.heightX-this.cRowResponder.height)-(70);
-			//this.cRowResponder.scaleX=this.cRowResponder.scaleY=this.scaleFactor;
 			this.addChild(this.cRowResponder);
 			this.cRowResponder.visible = false;
 			//#end
@@ -184,13 +171,9 @@ class ApplicationView extends Sprite
 			//trace("NOT FIRST TIME : DO NOT CREATE RESPONDER : RE-USE THE ASSETS");
 			for (i in 0...this.numRows) {
 				var cRow:ColorRow = this.allRows[i];
-				//var cRow:ColorRow = new ColorRow();
-				//cRow.y = i*(60+5);
 				//just putting something to render
 				cRow.x = 1000;
 				cRow.shuffleColors();
-				//this.addChild(cRow);
-				//this.allRows.push(cRow);
 				this.animateIn(cRow);
 			}
 		}
@@ -247,6 +230,7 @@ class ApplicationView extends Sprite
 		//this.addChild(this.modalLayer);
 		this.addChild(this.userResponseDisplay);
 		this.addChild(this.scoreView);
+		this.scoreView.visible=true;
 	}
 
 	//event handlers
@@ -372,6 +356,7 @@ class ApplicationView extends Sprite
 	{
 		if((this.scoreModel.getTotalCount()%10)==0){
 			this.homeScreen.visible=true;
+			this.scoreView.visible=false;
 		}else{
 			this.render();
 		}
