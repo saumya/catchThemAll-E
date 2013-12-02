@@ -13,7 +13,7 @@
 	<window width="0" height="0" if="html5" />
 	
 	<window hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="false" stencil-buffer="false" />
-	<window fullscreen="false" resizable="true" borderless="false" vsync="false" />
+	<window fullscreen="false" resizable="false" borderless="false" vsync="false" />
 	<window orientation="portrait" /><!---- portrait/landscape/auto -->
 	
 	<source path="Source" />
