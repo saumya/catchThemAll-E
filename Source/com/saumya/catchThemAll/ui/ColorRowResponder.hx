@@ -38,7 +38,7 @@ class ColorRowResponder extends Sprite
 			//var n:Int = Math.round(this.numSquares * Math.random());
 			//trace(i + ':' + n);
 			var cs:ColorSquare=new ColorSquare();
-			cs.addEventListener(MouseEvent.CLICK,onUserClick);
+			
 
 			switch(i+1) {
 				case 1:
@@ -58,7 +58,7 @@ class ColorRowResponder extends Sprite
 			cs.x= 30 + i*(60+5);
 			cs.y= 30 ;
 			this.addChild(cs);
-			
+			cs.addEventListener(MouseEvent.CLICK,onUserClick);
 		}
 		
 		
@@ -71,12 +71,10 @@ class ColorRowResponder extends Sprite
 	}
 
 	private function onUserClick(e:MouseEvent):Void{
-		var cs:ColorSquare = cast (e.target);
-		//trace(cs.getColorNum()+' : '+cs.getColor());
+		var cs:ColorSquare = cast (e.currentTarget,ColorSquare);
 		var ev:UserSelectionEvent=new UserSelectionEvent(UserSelectionEvent.SELECTED);
 		ev.colorNum=cs.getColorNum();
 		ev.colorValue=cs.getColor();
-		//this.dispatchEvent(new Event('userPickedEvent',true,true));
 		this.dispatchEvent(ev);
 	}
 	

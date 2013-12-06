@@ -171,7 +171,7 @@ class ApplicationView extends Sprite
 			//this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
 			this.cRowResponder.x = this.rowHolder.x;
 			this.cRowResponder.y=this.height-(60+5);
-			this.cRowResponder.y=this.height-(60+5);
+			
 			this.addChild(this.cRowResponder);
 			this.cRowResponder.visible = false;
 			//#end
