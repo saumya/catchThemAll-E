@@ -83,11 +83,14 @@ class ApplicationView extends Sprite
 		
 		this.allRows=new Array();
 		this.rowHolder = new Sprite();
+		this.addChild(this.rowHolder);
+		/*
 		var g:Graphics = this.rowHolder.graphics;
 		g.beginFill(0xFF0000);
 		g.drawRect(0,0,2,200);
 		g.endFill();
-		this.addChild(this.rowHolder);
+		*/
+		
 		//this.colorCounts=new Array();
 		this.ccModel = new ColorCountModel();
 		this.scoreModel = new ScoreModel();
@@ -171,9 +174,9 @@ class ApplicationView extends Sprite
 			//this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
 			this.cRowResponder.x = this.rowHolder.x;
 			this.cRowResponder.y=this.height-(60+5);
-			
+
 			this.addChild(this.cRowResponder);
-			this.cRowResponder.visible = false;
+			//this.cRowResponder.visible = false;
 			//#end
 		}else{
 			//trace("NOT FIRST TIME : DO NOT CREATE RESPONDER : RE-USE THE ASSETS");
@@ -371,8 +374,17 @@ class ApplicationView extends Sprite
 		}
 	}
 
+	public function setStageSize(newWidth:Float,newHeight:Float):Void
+	{
+		this.widthX = newWidth;
+		this.heightX = newHeight;
 
+		var xpos:Float = (newWidth)/2;
+		var ypos:Float = (newHeight)/2;
 
+		this.userResponseDisplay.move(xpos,ypos);
+		this.scoreView.showBackground(this.widthX, 50);
+	}
 	//Use for first setting the size
 	public function resize(newWidth:Float,newHeight:Float):Void
 	{
@@ -380,16 +392,13 @@ class ApplicationView extends Sprite
 		this.heightX = newHeight;
 		this.bg.setSize(newWidth, newHeight);
 		
-		#if html5
-		var xpos:Float = (this.stage.stageWidth-this.userResponseDisplay.width)/2;
-		var ypos:Float = (this.stage.stageHeight-this.userResponseDisplay.height)/2;
-		this.rowHolder.x = (newWidth-this.rowHolder.width)/2;
-		//this.rowHolder.x = this.stage.stageWidth/2;
-		#else
-		var xpos:Float = (this.stage.stageWidth)/2;
-		var ypos:Float = (this.stage.stageHeight)/2;
-		#end
+		var xpos:Float = (newWidth)/2;
+		var ypos:Float = (newHeight)/2;
 
+		var p:Float = (newWidth-this.rowHolder.width)/2;
+		this.rowHolder.x = p;
+		this.cRowResponder.x = p;
+		//
 		this.userResponseDisplay.move(xpos,ypos);
 		this.scoreView.showBackground(this.widthX, 50);
 	}

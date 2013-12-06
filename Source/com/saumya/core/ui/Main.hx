@@ -41,7 +41,8 @@ class Main extends Sprite
 		//trace('construct');
 		this.addChild(this.application);
 		//this.application.resize(stage.stageWidth, stage.stageHeight);
-		this.resize (stage.stageWidth, stage.stageHeight);
+		//this.resize (stage.stageWidth, stage.stageHeight);
+		this.application.setStageSize(stage.stageWidth,stage.stageHeight);
 		#if html5
 		this.stage.addEventListener (Event.RESIZE, stage_onResize);
 		#end
