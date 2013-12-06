@@ -398,6 +398,7 @@ class ApplicationView extends Sprite
 		var p:Float = (newWidth-this.rowHolder.width)/2;
 		this.rowHolder.x = p;
 		this.cRowResponder.x = p;
+		this.cRowResponder.y = (newHeight-70);
 		//
 		this.userResponseDisplay.move(xpos,ypos);
 		this.scoreView.showBackground(this.widthX, 50);

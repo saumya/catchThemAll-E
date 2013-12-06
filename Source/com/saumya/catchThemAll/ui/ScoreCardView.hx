@@ -84,7 +84,7 @@ class ScoreCardView extends Sprite
 		//
 		this.total.defaultTextFormat = this.correct.defaultTextFormat = this.wrong.defaultTextFormat = this.formatLeftAlign;
 		
-		this.total.x = this.total.y = 0;
+		this.total.x = this.total.y = 10;
 		this.correct.y = 30;
 		this.wrong.y = 50;
 

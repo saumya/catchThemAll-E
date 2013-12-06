@@ -26,7 +26,10 @@ class LifeView extends Sprite
 	{
 		this.bg=new Bitmap(Assets.getBitmapData ("images/life_line_bg_gfx.png"));
 		this.life=new Bitmap(Assets.getBitmapData ("images/life_line_gfx.png"));
-		this.life.x=this.life.y=5;
+		this.bg.x = 0;
+		this.bg.y = 50;
+		this.life.x=this.bg.x+5;
+		this.life.y=this.bg.y+5;
 		this.lifeText=new TextField();
 		this.lifeText.selectable=false;
 		this.lifeText.autoSize=TextFieldAutoSize.CENTER;
@@ -44,13 +47,13 @@ class LifeView extends Sprite
 		//
 		this.lifeText.defaultTextFormat = formatGeneral;
 		this.lifeText.x=0;
-		this.lifeText.y=12;
+		this.lifeText.y=0;
 		this.lifeText.text='LIFE';
 		this.lifeCounter.defaultTextFormat=formatGeneral;
 		this.lifeCounter.x=0;
-		this.lifeCounter.y=50;
+		this.lifeCounter.y=70;
 		this.lifeCounter.text=''+0;
-		this.lifeCounter.visible=false;
+		//this.lifeCounter.visible=false;
 		//
 		this.addEventListener(MouseEvent.CLICK,onUserClick);
 		//
