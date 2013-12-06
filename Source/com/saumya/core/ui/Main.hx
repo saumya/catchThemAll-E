@@ -40,10 +40,11 @@ class Main extends Sprite
 	{
 		//trace('construct');
 		this.addChild(this.application);
-		this.application.resize(stage.stageWidth, stage.stageHeight);
-		//this.resize (stage.stageWidth, stage.stageHeight);
-		//this.stage.addEventListener (Event.RESIZE, stage_onResize);
-		
+		//this.application.resize(stage.stageWidth, stage.stageHeight);
+		this.resize (stage.stageWidth, stage.stageHeight);
+		#if html5
+		this.stage.addEventListener (Event.RESIZE, stage_onResize);
+		#end
 	}
 	
 	private function stage_onResize(e:Event):Void 
@@ -53,14 +54,14 @@ class Main extends Sprite
 	
 	private function resize(stageWidth:Int, stageHeight:Int) 
 	{	
-		//this.application.resize (stageWidth, stageHeight);
+		this.application.resize (stageWidth, stageHeight);
 		/*
 		Footer.scaleX = Game.currentScale;
 		Footer.scaleY = Game.currentScale;
 		Footer.x = newWidth / 2 - Footer.width / 2;
 		Footer.y = newHeight - Footer.height;
 		*/
-		this.application.scaleWithNewSize(stageWidth,stageHeight);
+		//this.application.scaleWithNewSize(stageWidth,stageHeight);
 	}
 	
 }

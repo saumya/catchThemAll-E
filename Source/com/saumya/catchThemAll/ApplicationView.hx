@@ -83,6 +83,10 @@ class ApplicationView extends Sprite
 		
 		this.allRows=new Array();
 		this.rowHolder = new Sprite();
+		var g:Graphics = this.rowHolder.graphics;
+		g.beginFill(0xFF0000);
+		g.drawRect(0,0,2,200);
+		g.endFill();
 		this.addChild(this.rowHolder);
 		//this.colorCounts=new Array();
 		this.ccModel = new ColorCountModel();
@@ -153,16 +157,20 @@ class ApplicationView extends Sprite
 				//trace('crow : scaleFactor=(this.widthX/cRow.width)='+this.scaleFactor);
 				cRow.y = i*(60+5);
 				//just putting something to render
-				cRow.x=1000;
+				//cRow.x=1000;
 				//cRow.alpha =0;
 				//Actuate.tween (cRow, 0.8*(Math.random()), { alpha: 1, x:0 } ).ease (Quad.easeOut);
 				this.rowHolder.addChild(cRow);
 				this.allRows.push(cRow);
 				this.animateIn(cRow);
 			}
-
+			//
+			this.rowHolder.x = (this.stage.stageWidth-this.rowHolder.width)/2;
+			//
 			this.cRowResponder = new ColorRowResponder();
-			this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
+			//this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
+			this.cRowResponder.x = this.rowHolder.x;
+			this.cRowResponder.y=this.height-(60+5);
 			this.cRowResponder.y=this.height-(60+5);
 			this.addChild(this.cRowResponder);
 			this.cRowResponder.visible = false;
@@ -312,7 +320,8 @@ class ApplicationView extends Sprite
 	
 	private function animateIn(cRow:ColorRow):Void
 	{
-		var xVal:Float = (this.widthX - cRow.width) / 2;
+		//var xVal:Float = (this.widthX - cRow.width) / 2;
+		var xVal:Float = 0;	
 		//var xVal:Float = 0;
 		Actuate.tween (cRow, 0.8*(1 + Math.random()), { x:xVal } ).ease (Quad.easeOut).onComplete(animInComplete,[cRow]);
 	}
@@ -370,13 +379,16 @@ class ApplicationView extends Sprite
 		this.widthX = newWidth;
 		this.heightX = newHeight;
 		this.bg.setSize(newWidth, newHeight);
-		/*
+		
+		#if html5
 		var xpos:Float = (this.stage.stageWidth-this.userResponseDisplay.width)/2;
 		var ypos:Float = (this.stage.stageHeight-this.userResponseDisplay.height)/2;
-		*/
+		this.rowHolder.x = (newWidth-this.rowHolder.width)/2;
+		//this.rowHolder.x = this.stage.stageWidth/2;
+		#else
 		var xpos:Float = (this.stage.stageWidth)/2;
 		var ypos:Float = (this.stage.stageHeight)/2;
-
+		#end
 
 		this.userResponseDisplay.move(xpos,ypos);
 		this.scoreView.showBackground(this.widthX, 50);

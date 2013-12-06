@@ -101,6 +101,9 @@ class ScoreCardView extends Sprite
 	}
 	private function onAddedToStage(e:Event):Void
 	{
+		#if html5
+		this.lifeMax=50;
+		#else
 		if(this.stage.stageHeight<=500){
 			this.lifeMax=100;
 		}else if((this.stage.stageHeight>500)&&this.stage.stageHeight<=1000){
@@ -108,6 +111,7 @@ class ScoreCardView extends Sprite
 		}else{
 			this.lifeMax=300;
 		}
+		#end
 		this.lifeRemaining=this.lifeMax;
 		//
 		this.timerLife = new Timer(this.lifeMax);
