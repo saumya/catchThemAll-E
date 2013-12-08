@@ -63,8 +63,15 @@ class ColorRowInstruction extends Sprite
 					trace('Not Handled YET ! condition='+i);
 			}
 			
+			#if ios
+			cs.x = (-60) + i * (100 + 5);
+			//cs.y = 55;
+			#else
 			cs.x = 30 + i * (60 + 5);
 			cs.y = 30;
+			#end
+			
+			
 			//cs.addTextNumber(textMap);
 			cs.addTextNumber(i);
 			this.addChild(cs);

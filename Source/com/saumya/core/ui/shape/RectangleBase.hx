@@ -38,15 +38,28 @@ class RectangleBase extends Sprite
 	private function initialize() 
 	{
 		//trace('initialize');
+		#if ios
+		this.widthX = 100;
+		#else
 		this.widthX = 50;
+		#end
 		this.heightX = 100;
 		this.colorX = 0x444444;//initialising to a deafult color
 		//
+		#if ios
+		this.red=new Bitmap (Assets.getBitmapData ("images/1_red@2x.png"));
+		this.green=new Bitmap (Assets.getBitmapData ("images/2_green@2x.png"));
+		this.blue=new Bitmap (Assets.getBitmapData ("images/3_blue@2x.png"));
+		this.yellow=new Bitmap (Assets.getBitmapData ("images/4_yellow@2x.png"));
+		this.pink=new Bitmap (Assets.getBitmapData ("images/5_pink@2x.png"));
+		#else
 		this.red=new Bitmap (Assets.getBitmapData ("images/1_red.png"));
 		this.green=new Bitmap (Assets.getBitmapData ("images/2_green.png"));
 		this.blue=new Bitmap (Assets.getBitmapData ("images/3_blue.png"));
 		this.yellow=new Bitmap (Assets.getBitmapData ("images/4_yellow.png"));
 		this.pink=new Bitmap (Assets.getBitmapData ("images/5_pink.png"));
+		#end
+		
 
 		this.red.x=this.green.x=this.blue.x=this.yellow.x=this.pink.x= -(this.red.width/2);
 		this.red.y=this.green.y=this.blue.y=this.yellow.y=this.pink.y= -(this.red.height/2);
