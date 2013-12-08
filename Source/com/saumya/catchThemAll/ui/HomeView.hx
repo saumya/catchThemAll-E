@@ -29,17 +29,36 @@ class HomeView extends Sprite
 	{
 		this.logo = new Logo();
 		this.colorRow = new ColorRowInstruction();
-		this.colorRow.x = 15;
-		this.colorRow.y = 110;
-		this.instruction = new Bitmap (Assets.getBitmapData ("images/instruction.png"));
-		this.instruction.y = 180;
+
+
 		this.btnOK = new Sprite();
 		this.btnOK.addChild(new Bitmap (Assets.getBitmapData ("images/btn_ok.png")));
-		//this.btnOK = new Bitmap (Assets.getBitmapData ("images/btn_ok.png"));
-		this.btnOK.x = 135;//175-(80/2)
-		this.btnOK.y = 400;
+
 		this.btnOK.width = 80;
 		this.btnOK.height = 44;
+
+		#if ios
+		this.logo.x = 180;
+		this.colorRow.x = 200;
+		this.colorRow.y = 200;
+
+		this.instruction = new Bitmap (Assets.getBitmapData ("images/instruction@2x.png"));
+		this.instruction.y = 250;
+
+		this.btnOK.x = 320;//(640/2)-(80/2)
+		this.btnOK.y = 800;
+		#else
+		this.colorRow.x = 15;
+		this.colorRow.y = 110;
+
+		this.instruction = new Bitmap (Assets.getBitmapData ("images/instruction.png"));
+		this.instruction.y = 180;
+
+		this.btnOK.x = 135;//175-(80/2)
+		this.btnOK.y = 400;
+		#end
+
+
 		
 		this.btnOK.addEventListener(MouseEvent.CLICK, onUserClick);
 		//
