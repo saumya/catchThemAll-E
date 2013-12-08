@@ -198,7 +198,7 @@ class ApplicationView extends Sprite
 			for (i in 0...this.numRows) {
 				var cRow:ColorRow = this.allRows[i];
 				//just putting something to render
-				cRow.x = 1000;
+				cRow.x = 2000;
 				cRow.shuffleColors();
 				this.animateIn(cRow);
 			}
@@ -345,7 +345,7 @@ class ApplicationView extends Sprite
 	}
 	private function animateOut(cRow:ColorRow):Void
 	{
-		Actuate.tween (cRow, 0.8*(2*Math.random()), { x:-1000 } ).ease (Quad.easeIn).onComplete(animOutComplete,[cRow]);
+		Actuate.tween (cRow, 0.8*(2*Math.random()), { x:-2000 } ).ease (Quad.easeIn).onComplete(animOutComplete,[cRow]);
 	}
 	
 	private function animInComplete(cRow:ColorRow):Void

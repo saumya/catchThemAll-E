@@ -27,7 +27,7 @@ class LifeView extends Sprite
 		this.bg=new Bitmap(Assets.getBitmapData ("images/life_line_bg_gfx.png"));
 		this.life=new Bitmap(Assets.getBitmapData ("images/life_line_gfx.png"));
 		this.bg.x = 0;
-		this.bg.y = 50;
+		this.bg.y = 10;
 		this.life.x=this.bg.x+5;
 		this.life.y=this.bg.y+5;
 		this.lifeText=new TextField();
@@ -47,13 +47,12 @@ class LifeView extends Sprite
 		//
 		this.lifeText.defaultTextFormat = formatGeneral;
 		this.lifeText.x=0;
-		this.lifeText.y=0;
+		this.lifeText.y=30;
 		this.lifeText.text='LIFE';
 		this.lifeCounter.defaultTextFormat=formatGeneral;
 		this.lifeCounter.x=0;
 		this.lifeCounter.y=70;
 		this.lifeCounter.text=''+0;
-		//this.lifeCounter.visible=false;
 		//
 		this.addEventListener(MouseEvent.CLICK,onUserClick);
 		//
@@ -61,8 +60,11 @@ class LifeView extends Sprite
 	}
 	private function construct():Void
 	{
+		this.lifeCounter.visible = this.lifeText.visible = false;
+		//
 		this.addChild(this.bg);
 		this.addChild(this.life);
+
 		this.addChild(this.lifeText);
 		this.addChild(this.lifeCounter);
 		//lastly
@@ -71,6 +73,7 @@ class LifeView extends Sprite
 	private function onUserClick(e:MouseEvent):Void
 	{
 		this.lifeCounter.visible = !(this.lifeCounter.visible);
+		this.lifeText.visible = !(this.lifeText.visible);
 	}
 
 	public function render():Void
