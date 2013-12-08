@@ -76,15 +76,18 @@ class ApplicationView extends Sprite
 		this.homeScreen = new HomeView();
 		this.homeScreen.move((stageWidth-this.homeScreen.width)/2,(stageHeight-this.homeScreen.height)/2);
 		
-		
 		#if ios
-		this.numRows = 8;
+		//this.numRows = 8;
+		var numR:Int = Math.floor(stageHeight / 120);
+		//this.numRows = numR;
 		#else
 		//calculating numRows depending upon the height
 		var numR:Int = Math.floor(stageHeight / 80);//doing before, now will depend upon level
-		this.numRows = numR;//previously used settings : default=8, sony experia E=6
+		//this.numRows = numR;//previously used settings : default=8, sony experia E=6
 		//this.numRows = 5;
 		#end
+
+		this.numRows = numR;
 		
 		this.allRows=new Array();
 		this.rowHolder = new Sprite();
