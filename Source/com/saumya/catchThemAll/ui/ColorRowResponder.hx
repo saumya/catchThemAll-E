@@ -54,9 +54,16 @@ class ColorRowResponder extends Sprite
 				default:
 					trace('Not Handled YET ! condition='+i);
 			}
-			
+
+			#if ios
+			cs.x= 50 + i*(100+5);
+			cs.y= 10 ;
+			#else
 			cs.x= 30 + i*(60+5);
 			cs.y= 30 ;
+			#end
+			
+			
 			this.addChild(cs);
 			cs.addEventListener(MouseEvent.CLICK,onUserClick);
 		}

@@ -76,10 +76,15 @@ class ApplicationView extends Sprite
 		this.homeScreen = new HomeView();
 		this.homeScreen.move((stageWidth-this.homeScreen.width)/2,(stageHeight-this.homeScreen.height)/2);
 		
+		
+		#if ios
+		this.numRows = 8;
+		#else
 		//calculating numRows depending upon the height
 		var numR:Int = Math.floor(stageHeight / 80);//doing before, now will depend upon level
 		this.numRows = numR;//previously used settings : default=8, sony experia E=6
 		//this.numRows = 5;
+		#end
 		
 		this.allRows=new Array();
 		this.rowHolder = new Sprite();
@@ -158,7 +163,12 @@ class ApplicationView extends Sprite
 				*/
 				this.scaleFactor = (this.widthX/cRow.width);
 				//trace('crow : scaleFactor=(this.widthX/cRow.width)='+this.scaleFactor);
+				#if ios
+				cRow.y = i*(100+5);
+				#else
 				cRow.y = i*(60+5);
+				#end
+				
 				//just putting something to render
 				//cRow.x=1000;
 				//cRow.alpha =0;
@@ -167,8 +177,10 @@ class ApplicationView extends Sprite
 				this.allRows.push(cRow);
 				this.animateIn(cRow);
 			}
-			//
+			
+
 			this.rowHolder.x = (this.stage.stageWidth-this.rowHolder.width)/2;
+			
 			//
 			this.cRowResponder = new ColorRowResponder();
 			//this.cRowResponder.x = (this.widthX - this.cRowResponder.width) / 2;
