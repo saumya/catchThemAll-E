@@ -41,6 +41,7 @@ class ColorSquare extends RectangleBase
 
 		this.numText.x=this.numText.y=-30;
 		this.numText.selectable=false;
+		this.numText.embedFonts = true;
 
 		//this.addChild(this.numText);
 	}

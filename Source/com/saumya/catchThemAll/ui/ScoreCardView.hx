@@ -96,6 +96,7 @@ class ScoreCardView extends Sprite
 		this.wrong.text = "Wrong:0";
 
 		this.total.selectable = this.correct.selectable = this.wrong.selectable = false;
+		this.total.embedFonts = true;
 		
 		this.addEventListener(Event.ADDED_TO_STAGE,onAddedToStage);
 	}

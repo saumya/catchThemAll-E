@@ -33,9 +33,11 @@ class LifeView extends Sprite
 		this.lifeText=new TextField();
 		this.lifeText.selectable=false;
 		this.lifeText.autoSize=TextFieldAutoSize.CENTER;
+		this.lifeText.embedFonts=true;
 		this.lifeCounter=new TextField();
 		this.lifeCounter.selectable=false;
 		this.lifeCounter.autoSize=TextFieldAutoSize.CENTER;
+		this.lifeCounter.embedFonts=true;
 		
 		//
 		var font = Assets.getFont ("fonts/ArchitectsDaughter.ttf");
