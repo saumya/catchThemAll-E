@@ -36,10 +36,13 @@
 	<launchImage path="Default-Landscape@2x~ipad.png" width="2048" height="1536" />
 	-->
 	
-	<!--	
-	<android target-sdk-version="12" minimum-sdk-version="7" />
+		
+	<!-- <android target-sdk-version="12" minimum-sdk-version="7" /> -->
+	
+	<android target-sdk-version="16" minimum-sdk-version="7" />
 	<android install-location="preferExternal" />
-	-->
+	<certificate path="/Users/saumyaray/devHome/webApps/haxe/openfl/0_myApps/androidCertificates/r-key.keystore" />
+	
 	
 	<!--
 	<dependency name="GameKit.framework" if="ios" />
@@ -53,9 +56,11 @@
 	<icon path="Assets/images/rayIcon.svg" />
 	<launchImage path="Assets/images/rayIcon.svg" />
 	
+	<!--
 	<section if="release-sign">
 		<certificate path="path/to/android.keystore" if="android" />
 		<certificate path="path/to/author.p12" if="blackberry" />
 	</section>
-	
+	-->
+
 </project>
