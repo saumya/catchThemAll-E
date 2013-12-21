@@ -41,7 +41,7 @@
 	
 	<android target-sdk-version="16" minimum-sdk-version="7" />
 	<android install-location="preferExternal" />
-	<certificate path="/Users/saumyaray/devHome/webApps/haxe/openfl/0_myApps/androidCertificates/r-key.keystore" />
+	<certificate if="android" path="/Users/saumyaray/devHome/webApps/haxe/openfl/0_myApps/androidCertificates/r-key.keystore" />
 	
 	
 	<!--
