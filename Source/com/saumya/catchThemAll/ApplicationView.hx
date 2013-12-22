@@ -257,6 +257,9 @@ class ApplicationView extends Sprite
 		this.addChild(this.userResponseDisplay);
 		this.addChild(this.scoreView);
 		this.scoreView.visible=true;
+		//render the color on the feedback display
+		var mc:ColorCountVO = this.ccModel.getMaxCountColor();
+		this.userResponseDisplay.renderCorrectColor(mc.getColor());
 	}
 
 	//event handlers
@@ -275,8 +278,6 @@ class ApplicationView extends Sprite
 		}else {
 			//trace('WRONG');
 			this.scoreModel.incrementInCorrectCount();
-			
-			this.userResponseDisplay.renderCorrectColor(mc.getColor());
 			this.displayModalResponse(false);
 			//WIP: display the correct answer
 			/*

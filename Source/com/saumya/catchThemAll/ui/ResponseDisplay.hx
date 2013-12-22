@@ -136,6 +136,7 @@ class ResponseDisplay extends Sprite
 		this.timeUp.visible=true;
 		this.correct.visible=false;
 		this.inCorrect.visible=false;
+		this.correctColorView.visible=true;
 	}
 	
 	public function hideResponse():Void
