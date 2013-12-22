@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	
-	<meta title="CatchThemAllE" package="com.saumyaray.catchthemalle" version="1.0.0" company="saumya" />
+	<meta title="CatchThemAllE" package="com.saumyaray.catchthemalle" version="1.1.0" company="saumya" />
 	<app main="com.saumya.core.ui.Main" path="Export" file="CatchThemAllE" />
 	
 	<!-- <window width="640" height="1136" fps="30" if="iOS" /> --><!-- iphone 5 -->
