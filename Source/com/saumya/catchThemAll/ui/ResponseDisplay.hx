@@ -5,6 +5,8 @@ import flash.display.Sprite;
 import flash.events.MouseEvent;
 
 import com.saumya.core.events.UserEvent;
+import com.saumya.core.ui.shape.ColorSquare;
+import com.saumya.core.FiveBasicColor;
 
 import openfl.Assets;
 
@@ -12,7 +14,8 @@ import motion.Actuate;
 import motion.easing.Quad;
 
 /**
- * ...
+ * 
+ * @version 1.0.0
  * @author saumya
  */
 class ResponseDisplay extends Sprite
@@ -20,6 +23,7 @@ class ResponseDisplay extends Sprite
 	private var correct:Bitmap;
 	private var inCorrect:Bitmap;
 	private var timeUp:Bitmap;
+	private var correctColorView:ColorSquare;
 
 	public function new() 
 	{
@@ -44,6 +48,8 @@ class ResponseDisplay extends Sprite
 		this.inCorrect.visible = false;
 		this.timeUp.visible=false;
 		//
+		this.correctColorView = new ColorSquare();
+		//
 		this.addEventListener(MouseEvent.CLICK, onUserClick);
 		this.construct();
 	}
@@ -56,6 +62,11 @@ class ResponseDisplay extends Sprite
 		this.correct.x=this.correct.y=-(this.correct.width/2);
 		this.inCorrect.x=this.inCorrect.y=-(this.inCorrect.width/2);
 		this.timeUp.x=this.timeUp.y=-(this.timeUp.width/2);
+
+		this.correctColorView.scaleX = this.correctColorView.scaleY = 0.75;
+		//this.correctColorView.x = -(this.correctColorView.width);
+		this.correctColorView.y = ((2) * this.correctColorView.height);
+		this.addChild(this.correctColorView);
 		this.render();
 	}
 	
@@ -64,6 +75,9 @@ class ResponseDisplay extends Sprite
 		this.correct.visible = false;
 		this.inCorrect.visible = false;
 		this.timeUp.visible = false;
+
+		//this.correctColorView.setColor(FiveBasicColor.BLUE);
+		this.correctColorView.visible=false;
 	}
 
 	private function onUserClick(e:MouseEvent):Void 
@@ -85,6 +99,10 @@ class ResponseDisplay extends Sprite
 		this.dispatchEvent(ev);
 	}
 	
+	public function renderCorrectColor(color:FiveBasicColor):Void
+	{
+		this.correctColorView.setColor(color);
+	}
 	public function showResponse(isCorrect:Bool):Void
 	{
 		if (isCorrect) {
@@ -98,6 +116,7 @@ class ResponseDisplay extends Sprite
 			this.correct.x=-1000;
 			Actuate.tween (this.correct, 0.2, { x:0 } ).ease (Quad.easeOut);
 			*/
+			this.correctColorView.visible=false;
 		}else {
 			this.correct.visible = false;
 			this.inCorrect.visible = true;
@@ -109,6 +128,7 @@ class ResponseDisplay extends Sprite
 			this.inCorrect.x=-1000;
 			Actuate.tween (this.inCorrect, 0.2, { x:0 } ).ease (Quad.easeOut);
 			*/
+			this.correctColorView.visible=true;
 		}
 	}
 	public function showTimeUp():Void

@@ -275,7 +275,15 @@ class ApplicationView extends Sprite
 		}else {
 			//trace('WRONG');
 			this.scoreModel.incrementInCorrectCount();
+			
+			this.userResponseDisplay.renderCorrectColor(mc.getColor());
 			this.displayModalResponse(false);
+			//WIP: display the correct answer
+			/*
+			var cs:ColorSquare = new ColorSquare();
+			cs.changeColor(mc.getColor());
+			this.addChild(cs);
+			*/
 		}
 		//trace(this.scoreModel);
 		this.scoreView.setScore(this.scoreModel.getTotalCount(), this.scoreModel.getCorrectCount());
