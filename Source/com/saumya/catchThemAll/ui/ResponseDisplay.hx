@@ -65,7 +65,11 @@ class ResponseDisplay extends Sprite
 
 		this.correctColorView.scaleX = this.correctColorView.scaleY = 0.75;
 		//this.correctColorView.x = -(this.correctColorView.width);
+		#if ios
+		this.correctColorView.y = ((1) * this.correctColorView.height);
+		#else
 		this.correctColorView.y = ((2) * this.correctColorView.height);
+		#end
 		this.addChild(this.correctColorView);
 		this.render();
 	}
